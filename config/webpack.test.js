@@ -111,14 +111,7 @@ module.exports = function(options) {
         {
           enforce: 'pre',
           test: /\.(js|ts)$/,
-          loader: 'source-map-loader',
-          exclude: [
-            // these packages have problems with their sourcemaps
-            helpers.root('node_modules/rxjs'),
-            helpers.root('node_modules/@angular'),
-            helpers.root('node_modules/@ng-bootstrap'),
-            helpers.root('node_modules/ng2-translate')
-          ]
+          loader: 'source-map-loader'
         },
         {
           enforce: 'post',
@@ -142,7 +135,7 @@ module.exports = function(options) {
                 ["transform-runtime"]
               ]
             }
-          }, 'ts-loader', 'angular2-template-loader'],
+          }, 'ts-loader'],
           exclude: [/\.e2e\.ts$/]
         },
         {

@@ -30,6 +30,7 @@ function polyfills(env) {
     'core-js/es6/weak-map',
     'core-js/es6/weak-set',
     'core-js/es6/typed',
+    'core-js/es7/reflect',
     //'core-js/es6/reflect',
     // see issue https://github.com/AngularClass/angular2-webpack-starter/issues/709
     // import 'core-js/es6/promise';
@@ -43,9 +44,14 @@ function polyfills(env) {
 // Angular 2 and other Vendor imports
 function vendors(env) {
   return [
+    'rxjs',
     'jquery',
     'angular',
+    //'ng-metadata/platform-browser-dynamic',
+    //'ng-metadata/core',
+    //'ng-metadata/common',
     'angular-material',
+    'angular-ui-router',
     'ngmap',
     'LogUnobtrusiveExtension/dist/log-ex-unobtrusive',
     "core-decorators",
@@ -56,13 +62,7 @@ function vendors(env) {
 // RxJS
 function rxjs(env) {
   return [
-    'rxjs/Observable',
-    'rxjs/Subscription',
-    'rxjs/Subject',
-    'rxjs/BehaviorSubject',
-    'rxjs/add/operator/map',
-    'rxjs/add/operator/mergeMap',
-    'rxjs/add/operator/distinctUntilChanged',
+    'rxjs/Observable'
   ];
 }
 exports.polyfills = polyfills;

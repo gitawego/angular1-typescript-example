@@ -123,7 +123,7 @@ module.exports = function(config) {
         base: 'WebDriver',
         config: webdriverConfig,
         browserName: 'chrome',
-        platform: 'LINUX',
+        //platform: 'LINUX',
         //maxInstances: 1,
         //acceptSslCerts: true,
         // version: '53',

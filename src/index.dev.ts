@@ -1,9 +1,9 @@
 // vendor imports
 import * as angular from 'angular';
 import 'angular-material';
+import 'angular-ui-router';
 import 'LogUnobtrusiveExtension/dist/log-ex-unobtrusive';
 import 'ngmap';
-import 'angular-ui-router';
 // app css
 import './app.scss';
 
@@ -29,5 +29,5 @@ angular.module('app', [
 
 // start angular using code instead of ng-app declaration in the index.html
 angular.bootstrap(document, ['app'], {
-  strictDi: true
+  strictDi: true,
 });

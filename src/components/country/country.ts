@@ -58,7 +58,7 @@ export class CountryController {
    * @type {Array<string>}
    */
   public static $inject: [string] = ['$log', 'AppState', '$state']
-  public countryCode = '';
+  public countryCode: string = '';
   public country: any;
   // public country: any = null;
   /**
@@ -81,7 +81,7 @@ export class CountryController {
     //   this.onUpdate(this.countryCode);
     // }
   }
-  public onUpdate(countryCode) {
+  public onUpdate(countryCode: string) {
     this.$log.debug('onUpdate', countryCode);
     // this.AppState.emit('countryCode', countryCode);
     this.countryCode = countryCode;

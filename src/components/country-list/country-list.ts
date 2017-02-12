@@ -30,7 +30,7 @@ export class CountryList implements IComponentOptions {
    * @type {Object}
    */
   public bindings: { [binding: string]: string; } = {
-    // onCountry: '&'
+    onCountry: '&',
     countryCode: '<'
   }
 

@@ -1,0 +1,14 @@
+// vendor imports
+@import '~angular-material/angular-material.css';
+
+// app imports
+@import 'common/sass/common';
+
+.app {
+  height: 100%;
+  background-color: $baseBgColor;
+
+  nav {
+    text-align: center;
+  }
+}

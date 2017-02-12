@@ -1,0 +1,11 @@
+<div class="country" layout="column">
+  <div class="row">
+    <country-search country-code="$ctrl.countryCode" on-update="$ctrl.onUpdate(countryCode)"></country-search>
+  </div>
+  <div class="row" layout="row" flex>
+    <country-list country-code="$ctrl.countryCode" on-country="$ctrl.countrySelected(country)"
+      flex="40" layout="column"></country-list>
+    <!--<country-map flex layout="column" country-info="$ctrl.country"></country-map>-->
+    <ui-view flex layout="column"></ui-view>
+  </div>
+</div>

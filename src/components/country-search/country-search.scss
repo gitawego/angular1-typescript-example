@@ -1,0 +1,14 @@
+@import '../../common/sass/variables';
+.country-search {
+  text-align: center;
+  background-color: #70bcf7;
+  position: relative;
+  z-index: 1;
+  .md-toolbar-tools.md-toolbar-tools {
+    min-height: 120px;
+  }
+  md-input-container {
+    margin: 18px 0 0;
+    text-align: left;
+  }
+}

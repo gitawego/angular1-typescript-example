@@ -1,0 +1,36 @@
+<div class="country-list" flex layout="column">
+  <h2 class="md-whiteframe-1dp">Country List</h2>
+  <md-virtual-repeat-container id="country-list-container" md-top-index="$ctrl.topIndex" flex>
+    <div md-virtual-repeat="country in $ctrl.countries | filter:$ctrl.filterByPattern($ctrl.countryCode)" class="repeated-item"
+      flex>
+      <md-card md-theme="default" md-theme-watch class="{{$index%2?'':'country-list-card'}}">
+        <md-card-title>
+          <md-card-title-text>
+            <span class="md-headline">{{country.name}} ({{country.nativeName}})</span>
+          </md-card-title-text>
+        </md-card-title>
+        <md-card-content>
+          <div layout="row">
+            <md-input-container md-no-float class="md-block" flex="50">
+              <label>Capital</label>
+              <input ng-model="country.capital" placeholder="Capital" readonly>
+            </md-input-container>
+            <md-input-container md-no-float class="md-block" flex="50">
+              <label>Population</label>
+              <input ng-model="country.population" placeholder="Population" readonly>
+            </md-input-container>
+          </div>
+          <div>
+            <md-input-container md-no-float class="md-block">
+              <label>Borders List</label>
+              <input ng-model="country.borders" placeholder="Borders List" readonly>
+            </md-input-container>
+          </div>
+        </md-card-content>
+        <md-card-actions layout="row" layout-align="end center">
+          <md-button ng-click="$ctrl.showOnMap(country)">Show On Map</md-button>
+        </md-card-actions>
+      </md-card>
+</div>
+</md-virtual-repeat-container>
+</div>

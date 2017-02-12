@@ -1,0 +1,19 @@
+@import '../../common/sass/variables';
+.country-list {
+  text-align: left;
+  h2 {
+    margin: 0;
+    padding: 10px 0;
+    position: relative;
+    z-index: 1;
+    text-align: center;
+  }
+  .country-list-card {
+    background-color: #f1f3e2;
+  }
+}
+
+#country-list-container {
+  //min-height:250px;
+  width: 100%;
+}

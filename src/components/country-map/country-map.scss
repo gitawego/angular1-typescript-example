@@ -1,0 +1,19 @@
+@import '../../common/sass/variables';
+country-map {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  flex-direction: column;
+  box-sizing: border-box;
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+  flex: 1;
+}
+
+.country-map {
+  text-align: center;
+  height:100%;
+  ng-map {
+    height: 100% !important;
+  }
+}

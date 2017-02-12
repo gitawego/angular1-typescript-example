@@ -1,0 +1,10 @@
+<div class="country-map" flex layout="column">
+  <ng-map ng-if="$ctrl.countryInfo"
+    center="{{$ctrl.countryInfo.latlng}}"
+    flex zoom="5">
+    <marker position="{{$ctrl.countryInfo.latlng}}" label="{{$ctrl.countryInfo.name}}"></marker>
+  </ng-map>
+  <div ng-if="!$ctrl.countryInfo">
+    <h2>Please choose a country</h2>
+  </div>
+</div>

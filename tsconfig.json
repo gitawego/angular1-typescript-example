@@ -1,0 +1,29 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "noImplicitAny": false,
+    "removeComments": true,
+    "sourceMap": true,
+    "module": "commonjs",
+    "experimentalDecorators": false,
+    "lib": ["es2015", "dom"],
+    "typeRoots": [
+      "node_modules/@types/"
+    ],
+    "outDir": "dist-tsc/"
+  },
+  "exclude": [
+    "node_modules",
+    "builds",
+    "dist",
+    "generator-templates",
+    "typings/main.d.ts",
+    "typings/main"
+  ],
+  "include": [
+    "src/**/*",
+    "typings/**/*"
+  ],
+  "compileOnSave": false,
+  "buildOnSave": false
+}

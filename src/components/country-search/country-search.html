@@ -1,0 +1,9 @@
+<div class="country-search  md-accent md-whiteframe-2dp">
+  <form ng-submit="$ctrl.update();$event.preventDefault()">
+    <md-input-container>
+      <label>Country</label>
+      <input ng-model="$ctrl.countryCode" />
+    </md-input-container>
+    <md-button class="md-primary md-raised" ng-click="$ctrl.update()">Search</md-button>
+  </form>
+</div>

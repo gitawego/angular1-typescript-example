@@ -1,5 +1,5 @@
 import * as angular from 'angular';
-import { STATES } from './states';
+import { STATES } from './app.states';
 AppConfig.$inject = ['$locationProvider', 'logExProvider', '$compileProvider', '$mdIconProvider',
   '$stateProvider', '$urlServiceProvider', '$mdThemingProvider']
 
@@ -12,7 +12,7 @@ AppConfig.$inject = ['$locationProvider', 'logExProvider', '$compileProvider', '
  * @param {*} $compileProvider Angular Compiler Provider
  * @param {*} $mdIconProvider Angular Material Icon Provider
  */
-export default function AppConfig($locationProvider: any, logExProvider: any, $compileProvider: any,
+export function AppConfig($locationProvider: any, logExProvider: any, $compileProvider: any,
                                   $mdIconProvider: any, $stateProvider: any, $urlServiceProvider: any,
                                   $mdThemingProvider: any): void {
   $urlServiceProvider.rules.otherwise({ state: 'country' });

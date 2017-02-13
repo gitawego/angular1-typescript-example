@@ -1,5 +1,5 @@
 import { IQService, IPromise } from 'angular';
-import { AppState } from './common/services/app-state/app-state';
+import { AppState } from '../common/services/appState/appState';
 const countryState = {
   name: 'country',
   url: '/country',

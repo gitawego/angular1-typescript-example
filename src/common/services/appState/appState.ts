@@ -1,12 +1,14 @@
 import { IQService, IPromise } from 'angular';
 import { EventEmitter2 } from 'eventemitter2';
 import * as _ from 'lodash';
+import { Inject, Injectable } from 'ng-metadata/core';
+
 /**
  *
  * @export
  * @class AppState
  */
-
+@Injectable()
 export class AppState extends EventEmitter2 {
   public static $inject: string[] = ['$log', '$http', '$q'];
   protected initialized = false;
@@ -15,7 +17,11 @@ export class AppState extends EventEmitter2 {
   /**
    * @param {$log} $log - Angular logging Service.
    */
-  constructor(public $log: any, public $http: any, public $q: IQService) {
+  constructor(
+    @Inject('$log') private $log: any,
+    @Inject('$http') private $http: any,
+    @Inject('$q') private $q: IQService
+  ) {
     super();
     this.$log = $log.getInstance('AppServices', true);
     this.$log.debug('constructor');

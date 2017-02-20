@@ -10,7 +10,7 @@ export interface CountryInfo {
 }
 
 @Component({
-  selector: 'country-list',
+  selector: 'country-map',
   moduleId: module.id,
   styles: [require('./country-map.scss')],
   template: require('./country-map.html').toString(),

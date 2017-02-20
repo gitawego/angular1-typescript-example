@@ -3,10 +3,10 @@ import { StateService } from 'angular-ui-router';
 
 
 @Component({
-  selector: 'country-list',
+  selector: 'country-search',
   moduleId: module.id,
-  styles: [require('./country-map.scss')],
-  template: require('./country-map.html').toString(),
+  styles: [require('./country-search.scss')],
+  template: require('./country-search.html').toString(),
 })
 export class CountrySearchComponent implements OnInit {
   @Input() countryCode: string = '';

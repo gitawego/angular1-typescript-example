@@ -1,18 +1,21 @@
-import { Component, OnInit, Inject, Input } from 'ng-metadata/core';
 import { StateService } from 'angular-ui-router';
+import { Component, OnInit, Inject, Input } from 'ng-metadata/core';
+import { AppState } from '../../common/services/appState/appState';
 
 @Component({
   selector: 'country',
   moduleId: module.id,
   styles: [require('./country.scss')],
   template: require('./country.html').toString(),
+  providers: [
+    AppState,
+  ],
 })
 export class CountryComponent implements OnInit {
   @Input() country: string;
   @Input() countryCode: string = '';
   constructor(
     @Inject('$log') private $log: LogEx.ILogService,
-    @Inject('AppState') private AppState: any,
     @Inject('$state') private $state: StateService
   ) { }
 

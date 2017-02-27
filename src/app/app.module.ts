@@ -1,11 +1,13 @@
 import { NgModule } from 'ng-metadata/core';
 import * as ngMaterial from 'angular-material';
-import * as uiRouter from 'angular-ui-router';
+import uiRouter from 'angular-ui-router';
 import * as ngMap from 'ngmap';
-import * as logEx from 'LogUnobtrusiveExtension/dist/log-ex-unobtrusive';
+import 'LogUnobtrusiveExtension/dist/log-ex-unobtrusive';
 
 import { AppComponent } from './app.component';
 import { AppConfig } from './app.config';
+import { provideState } from './app.states';
+import { AppState } from '../common/services/appState/appState';
 import { CountryModule } from './country/country.module';
 
 @NgModule({
@@ -16,12 +18,13 @@ import { CountryModule } from './country/country.module';
     ngMaterial,
     uiRouter as any,
     ngMap,
-    logEx,
-    AppConfig,
-    CountryModule
+    'log.ex.uo',
+    CountryModule,
   ],
   providers: [
-
+    AppConfig,
+    AppState,
+    provideState,
   ]
 })
 export class AppModule {

@@ -25,4 +25,16 @@ const mapState = {
     ]
   }
 };
-export const STATES: any[] = [countryState, mapState];
+// state.config.ts
+
+// we need to manually annotate DI
+provideState.$inject = ['$stateProvider', '$urlServiceProvider'];
+export function provideState($stateProvider, $urlServiceProvider) {
+
+  // For any unmatched url, redirect to /state1
+  $urlServiceProvider.rules.otherwise({ state: 'country' });
+
+  // Now set up the states
+  $stateProvider.state(countryState);
+  $stateProvider.state(mapState);
+}

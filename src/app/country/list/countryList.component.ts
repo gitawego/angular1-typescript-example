@@ -1,11 +1,15 @@
 import { Component, OnInit, Inject, Input, Output, EventEmitter } from 'ng-metadata/core';
 import { StateService } from 'angular-ui-router';
+import { AppState } from '../../../common/services/appState/appState';
 
 @Component({
   selector: 'country-list',
   moduleId: module.id,
   styles: [require('./country-list.scss')],
   template: require('./country-list.html').toString(),
+  providers: [
+    AppState,
+  ],
 })
 export class CountryListComponent implements OnInit {
   @Input() countries = [];

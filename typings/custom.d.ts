@@ -1,3 +1,4 @@
+declare var ENV: string;
 declare namespace LogEx {
   interface ILogService {
     getInstance(id: string, override?: boolean, useTemplate?: boolean, colorCss?: string): ILogService;

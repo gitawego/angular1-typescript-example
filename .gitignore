@@ -36,7 +36,5 @@ dist
 builds
 docs
 tmp
-typings
-
 /.history
 coverage

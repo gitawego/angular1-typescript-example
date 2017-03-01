@@ -1,21 +1,34 @@
 import { IQService, IPromise } from 'angular';
 import { EventEmitter2 } from 'eventemitter2';
 import * as _ from 'lodash';
+import { Inject, Injectable } from 'ng-metadata/core';
+
+export interface CountryInfo {
+  alpha2Code: string;
+  name: string;
+  nativeName: string;
+  latlng: [number, number];
+  [key: string]: any;
+}
 /**
  *
  * @export
  * @class AppState
  */
-
+@Injectable()
 export class AppState extends EventEmitter2 {
-  public static $inject: string[] = ['$log', '$http', '$q'];
+  private countryInfo: CountryInfo = null;
   protected initialized = false;
   private countryUrl: string = 'https://restcountries-v1.p.mashape.com/all';
   private countries: any[] = [];
   /**
    * @param {$log} $log - Angular logging Service.
    */
-  constructor(public $log: any, public $http: any, public $q: IQService) {
+  constructor(
+    @Inject('$log') private $log: any,
+    @Inject('$http') private $http: any,
+    @Inject('$q') private $q: IQService
+  ) {
     super();
     this.$log = $log.getInstance('AppServices', true);
     this.$log.debug('constructor');
@@ -30,6 +43,12 @@ export class AppState extends EventEmitter2 {
     return _.find(this.countries, {
       alpha2Code: code
     });
+  }
+  public currentCountry(countryInfo?: CountryInfo) {
+    if (countryInfo) {
+      this.countryInfo = countryInfo;
+    }
+    return this.countryInfo;
   }
   public ensureCountries(): IPromise<any> {
     return new this.$q((resolve, reject) => {

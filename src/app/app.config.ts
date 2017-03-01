@@ -1,7 +1,6 @@
 import * as angular from 'angular';
-import { STATES } from './states';
 AppConfig.$inject = ['$locationProvider', 'logExProvider', '$compileProvider', '$mdIconProvider',
-  '$stateProvider', '$urlServiceProvider', '$mdThemingProvider']
+  '$mdThemingProvider']
 
 /**
  * Config function for Angular on the main App component
@@ -12,13 +11,12 @@ AppConfig.$inject = ['$locationProvider', 'logExProvider', '$compileProvider', '
  * @param {*} $compileProvider Angular Compiler Provider
  * @param {*} $mdIconProvider Angular Material Icon Provider
  */
-export default function AppConfig($locationProvider: any, logExProvider: any, $compileProvider: any,
-                                  $mdIconProvider: any, $stateProvider: any, $urlServiceProvider: any,
-                                  $mdThemingProvider: any): void {
-  $urlServiceProvider.rules.otherwise({ state: 'country' });
-  STATES.forEach((state) => {
-    $stateProvider.state(state);
-  });
+export function AppConfig($locationProvider: any, logExProvider: any, $compileProvider: any,
+  $mdIconProvider: any, $mdThemingProvider: any): void {
+  //$urlServiceProvider.rules.otherwise({ state: 'country' });
+  // STATES.forEach((state) => {
+  //   $stateProvider.state(state);
+  // });
   $mdThemingProvider.definePalette('docs-blue', $mdThemingProvider.extendPalette('blue', {
     '50': '#DCEFFF',
     '100': '#AAD1F9',

@@ -7,52 +7,17 @@ const helpers = require('./helpers');
 const fs = require('fs');
 const path = require('path');
 const _ = require('lodash');
+
 /*
  * Webpack Plugins
  */
-// problem with copy-webpack-plugin
+const CommonsChunkPlugin = require('webpack/lib/optimize/CommonsChunkPlugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const HtmlElementsPlugin = require('./html-elements-plugin');
 const AssetsPlugin = require('assets-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const nodeModulesPath = helpers.root('node_modules');
-
-
-// dll helpers
-function getManifest(__path) {
-  var manifest = tryDll(() => JSON.parse(fs.readFileSync(helpers.root('./dist/dll/' + __path + '-manifest.json'), 'utf8')
-    // TODO(gdi2290): workaround until webpack fixes dll generation
-    //.replace(/}(.*[\n\r]\s*)}(.*[\n\r]\s*)}"activeExports": \[\]/, '')
-  ));
-  return manifest;
-}
-
-function getDllAssets(chunk) {
-  var assets = tryDll(() => require(root('./dist/dll/webpack-assets.json')));
-  // {"vendors":{"js":"vendors.js"},"polyfills":{"js":"polyfills.js"}}
-  return assets[chunk]['js'];
-}
-
-function getAssets(chunk) {
-  var assets = tryDll(() => require(root('./dist/webpack-assets.json')));
-  // {"vendors":{"js":"vendors.js"},"polyfills":{"js":"polyfills.js"}}
-  return assets[chunk]['js'];
-}
-
-function tryDll(cb) {
-  try {
-    return cb();
-  } catch (e) {
-    console.info("Initializing `%s`...", "DLL files");
-    var spawn = require('cross-spawn');
-    spawn.sync("npm", ["run", "dll"], {
-      stdio: "inherit"
-    });
-    return cb();
-    // throw new Error('Please run `npm run dll` first before building or running the server');
-  }
-}
 
 const scssLoader = [
   // 'css-to-string-loader',
@@ -91,13 +56,13 @@ module.exports = function (options) {
   var isProd = options.ENV === 'production';
   const miniImages = '?' + (isProd ? '' : '-') + '?minimize';
   const scssExtractLoader = ExtractTextPlugin.extract({
-    fallbackLoader: 'style-loader',
-    loader: scssLoader,
+    fallback: 'style-loader',
+    use: scssLoader,
     publicPath: './'
   });
   const cssExtractLoader = ExtractTextPlugin.extract({
-    fallbackLoader: 'style-loader',
-    loader: ['css-loader'],
+    fallback: 'style-loader',
+    use: ['css-loader'],
     publicPath: './'
   });
   console.log("isProd", isProd);
@@ -191,9 +156,9 @@ module.exports = function (options) {
      */
     entry: {
 
-      // 'polyfills': './src/polyfills.browser.ts',
+      'polyfills': './src/polyfills.ts',
       // 'vendor':    './src/vendor.browser.ts',
-      'main': './src/index.release.ts'
+      'main': './src/index.ts'
 
     },
 
@@ -322,14 +287,6 @@ module.exports = function (options) {
         filename: 'webpack-assets.json',
         prettyPrint: true
       }),
-      new webpack.DllReferencePlugin({
-        context: '.',
-        manifest: getManifest('vendors'),
-      }),
-      new webpack.DllReferencePlugin({
-        context: '.',
-        manifest: getManifest('polyfills'),
-      }),
       new ExtractTextPlugin('[name].css'),
       /**
        * Plugin: ContextReplacementPlugin
@@ -352,18 +309,6 @@ module.exports = function (options) {
         // Tether: 'tether',
         // Util: 'bootstrap/dist/js/umd/util.js'
       }),
-      // new ExtractTextPlugin('[name].css'),
-      /*
-       * Plugin: CommonsChunkPlugin
-       * Description: Shares common code between the pages.
-       * It identifies common modules and put them into a commons chunk.
-       *
-       * See: https://webpack.github.io/docs/list-of-plugins.html#commonschunkplugin
-       * See: https://github.com/webpack/docs/wiki/optimization#multi-page-app
-       */
-      // new webpack.optimize.CommonsChunkPlugin({
-      //   name: ['polyfills', 'vendor'].reverse()
-      // }),
 
       /*
        * Plugin: CopyWebpackPlugin
@@ -416,7 +361,20 @@ module.exports = function (options) {
        */
       new HtmlElementsPlugin({
         headTags: require('./head-config.common')
-      })
+      }),
+      new CommonsChunkPlugin({
+        name: 'polyfills',
+        chunks: ['polyfills']
+      }),
+      new CommonsChunkPlugin({
+        name: 'vendor',
+        chunks: ['main'],
+        minChunks: module => /node_modules/.test(module.resource)
+      }),
+      // Specify the correct order the scripts will be injected in
+      new CommonsChunkPlugin({
+        name: ['polyfills', 'vendor'].reverse()
+      }),
     ],
 
     /*
@@ -431,8 +389,7 @@ module.exports = function (options) {
       module: false,
       clearImmediate: false,
       setImmediate: false
-    },
-    target: 'web'
+    }
 
   };
 };

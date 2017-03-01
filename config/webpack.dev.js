@@ -33,13 +33,6 @@ console.log("args", process.argv.join(' '));
 module.exports = function(options) {
   options = options || {};
   const cfg = webpackMerge(commonConfig({ ENV: ENV }), {
-    entry: {
-
-      // 'polyfills': './src/polyfills.browser.ts',
-      // 'vendor':    './src/vendor.browser.ts',
-      'main': './src/index.dev.ts'
-
-    },
     /**
      * Developer tool to enhance debugging
      *

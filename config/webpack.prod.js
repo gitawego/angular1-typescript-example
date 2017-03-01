@@ -31,13 +31,6 @@ const METADATA = webpackMerge(commonConfig({ ENV: ENV }).metadata, {
 
 module.exports = function(env) {
   return webpackMerge(commonConfig({ ENV: ENV }), {
-    entry: {
-
-      // 'polyfills': './src/polyfills.browser.ts',
-      // 'vendor':    './src/vendor.browser.ts',
-      'main': './src/main.browser'
-
-    },
     /**
      * Developer tool to enhance debugging
      *

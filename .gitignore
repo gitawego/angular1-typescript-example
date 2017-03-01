@@ -38,3 +38,4 @@ docs
 tmp
 /.history
 coverage
+npm-debug.*

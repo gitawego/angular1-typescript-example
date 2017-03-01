@@ -5,6 +5,7 @@
     "removeComments": true,
     "sourceMap": true,
     "module": "commonjs",
+    "importHelpers": true,
     "experimentalDecorators": true,
     "lib": ["es2015", "dom"],
     "typeRoots": [

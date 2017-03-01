@@ -1,6 +1,5 @@
 import { Component, OnInit, Inject, Input, Output, EventEmitter } from 'ng-metadata/core';
 import { StateService } from 'angular-ui-router';
-import { AppState } from '../../../common/services/appState/appState';
 export interface CountryInfo {
   alpha2Code: string;
   name: string;
@@ -13,10 +12,7 @@ export interface CountryInfo {
   selector: 'country-map',
   moduleId: module.id,
   styles: [require('./country-map.scss')],
-  template: require('./country-map.html').toString(),
-  providers: [
-    AppState,
-  ],
+  template: require('./country-map.html').toString()
 })
 export class CountryMapComponent implements OnInit {
   @Input() countryInfo: CountryInfo;
@@ -25,8 +21,8 @@ export class CountryMapComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.$log = this.$log.getInstance('CountryMapComponent', false);
-    this.$log.debug('constructor');
+    this.$log = this.$log.getInstance('CountryMapComponent', true);
+    this.$log.debug('ngOnInit');
   }
 
 }

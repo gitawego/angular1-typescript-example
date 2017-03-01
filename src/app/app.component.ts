@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject } from 'ng-metadata/core';
-import { AppState } from '../common/services/appState/appState';
+
 @Component({
   selector: 'app',
   styles: [require('./app.scss')],
@@ -7,19 +7,15 @@ import { AppState } from '../common/services/appState/appState';
     <div class="app">
       <ui-view></ui-view>
     </div>
-  `,
-  providers: [
-    AppState,
-  ]
+  `
 })
 export class AppComponent implements OnInit {
   constructor(
-    @Inject('$log') private $log: LogEx.ILogService,
-    //@Inject('AppState') private AppState: any
+    @Inject('$log') private $log: LogEx.ILogService
   ) { }
 
   ngOnInit() {
-    this.$log = this.$log.getInstance('AppController', false);
+    this.$log = this.$log.getInstance('AppController', true);
     this.$log.debug('constructor');
   }
 

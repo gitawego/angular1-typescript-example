@@ -6,25 +6,24 @@ import 'LogUnobtrusiveExtension/dist/log-ex-unobtrusive';
 
 import { AppComponent } from './app.component';
 import { AppConfig } from './app.config';
-import { provideState } from './app.states';
-import { AppState } from '../common/services/appState/appState';
+import { statesConfig } from './states.config';
 import { CountryModule } from './country/country.module';
-
+import { AppState } from '../common/services';
 @NgModule({
   declarations: [
     AppComponent
   ],
   imports: [
+    'log.ex.uo',
     ngMaterial,
     uiRouter as any,
     ngMap,
-    'log.ex.uo',
     CountryModule,
   ],
   providers: [
     AppConfig,
+    statesConfig,
     AppState,
-    provideState,
   ]
 })
 export class AppModule {

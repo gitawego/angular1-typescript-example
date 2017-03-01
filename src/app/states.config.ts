@@ -1,5 +1,5 @@
 import { IQService, IPromise } from 'angular';
-import { AppState } from '../common/services/appState/appState';
+//import { AppState } from '../common/services/appState/appState';
 const countryState = {
   name: 'country',
   url: '/country',
@@ -11,14 +11,14 @@ const mapState = {
   component: 'countryMap',
   parent: countryState,
   resolve: {
-    countryInfo: ['AppState', '$transition$', '$q',
-      (AppState: AppState, $transition$, $q: IQService): IPromise<any> => {
+    countryInfo: ['$transition$', '$q',
+      ($transition$, $q: IQService): IPromise<any> => {
         const code = $transition$.params().countryCode;
         return new $q((resolve, reject) => {
           if (!code) {
             resolve();
           } else {
-            AppState.getCountry(code).then(resolve, reject);
+            //AppState.getCountry(code).then(resolve, reject);
           }
         });
       }
@@ -28,8 +28,8 @@ const mapState = {
 // state.config.ts
 
 // we need to manually annotate DI
-provideState.$inject = ['$stateProvider', '$urlServiceProvider'];
-export function provideState($stateProvider, $urlServiceProvider) {
+statesConfig.$inject = ['$stateProvider', '$urlServiceProvider'];
+export function statesConfig($stateProvider, $urlServiceProvider) {
 
   // For any unmatched url, redirect to /state1
   $urlServiceProvider.rules.otherwise({ state: 'country' });

@@ -1,15 +1,10 @@
 import { StateService } from 'angular-ui-router';
 import { Component, OnInit, Inject, Input } from 'ng-metadata/core';
-import { AppState } from '../../common/services/appState/appState';
-
 @Component({
   selector: 'country',
   moduleId: module.id,
   styles: [require('./country.scss')],
-  template: require('./country.html').toString(),
-  providers: [
-    AppState,
-  ],
+  template: require('./country.html').toString()
 })
 export class CountryComponent implements OnInit {
   @Input() country: string;
@@ -20,16 +15,14 @@ export class CountryComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.$log = this.$log.getInstance('CountryComponent', false);
+    this.$log = this.$log.getInstance('CountryComponent', true);
     this.$log.debug('constructor');
   }
   onUpdate(countryCode: string) {
     this.$log.debug('onUpdate', countryCode);
-    // this.AppState.emit('countryCode', countryCode);
     this.countryCode = countryCode;
   }
   countrySelected(country) {
-    // this.country = country;
     this.$state.go('map', {
       countryCode: country.alpha2Code
     });

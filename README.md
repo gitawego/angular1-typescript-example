@@ -1,6 +1,7 @@
 
 # angular 1.6 typescript example
 
+use Angular 2 notation in Angular 1
 
 ## installation
 
@@ -14,8 +15,6 @@ curl -o- -L https://yarnpkg.com/install.sh | bash
 # at project root
 yarn
 
-# build DLL
-yarn build:dll:dev
 
 # launch dev server
 yarn server:dev

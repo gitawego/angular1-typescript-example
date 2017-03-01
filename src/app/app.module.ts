@@ -1,4 +1,5 @@
 import { NgModule } from 'ng-metadata/core';
+import { AsyncPipe } from 'ng-metadata/common';
 import * as ngMaterial from 'angular-material';
 import uiRouter from 'angular-ui-router';
 import * as ngMap from 'ngmap';
@@ -11,7 +12,8 @@ import { CountryModule } from './country/country.module';
 import { AppState } from '../common/services';
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    AsyncPipe,
   ],
   imports: [
     'log.ex.uo',

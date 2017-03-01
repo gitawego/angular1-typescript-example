@@ -3,6 +3,13 @@ import { EventEmitter2 } from 'eventemitter2';
 import * as _ from 'lodash';
 import { Inject, Injectable } from 'ng-metadata/core';
 
+export interface CountryInfo {
+  alpha2Code: string;
+  name: string;
+  nativeName: string;
+  latlng: [number, number];
+  [key: string]: any;
+}
 /**
  *
  * @export
@@ -10,7 +17,7 @@ import { Inject, Injectable } from 'ng-metadata/core';
  */
 @Injectable()
 export class AppState extends EventEmitter2 {
-  public static $inject: string[] = ['$log', '$http', '$q'];
+  private countryInfo: CountryInfo = null;
   protected initialized = false;
   private countryUrl: string = 'https://restcountries-v1.p.mashape.com/all';
   private countries: any[] = [];
@@ -36,6 +43,12 @@ export class AppState extends EventEmitter2 {
     return _.find(this.countries, {
       alpha2Code: code
     });
+  }
+  public currentCountry(countryInfo?: CountryInfo) {
+    if (countryInfo) {
+      this.countryInfo = countryInfo;
+    }
+    return this.countryInfo;
   }
   public ensureCountries(): IPromise<any> {
     return new this.$q((resolve, reject) => {

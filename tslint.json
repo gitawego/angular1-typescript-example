@@ -4,8 +4,8 @@
   ],
   "rules": {
 
-    "directive-selector": [true, "attribute", "np", "camelCase"],
-    "component-selector": [true, "element", "np", "kebab-case"],
+    "directive-selector": [true, "attribute", "", "camelCase"],
+    "component-selector": [true, "element", "", "kebab-case"],
     "use-input-property-decorator": true,
     "use-output-property-decorator": true,
     "use-host-property-decorator": true,
@@ -13,7 +13,7 @@
     "no-output-rename": true,
     "use-life-cycle-interface": true,
     "use-pipe-transform-interface": true,
-    "pipe-naming": [true, "camelCase", "np"],
+    "pipe-naming": [true, "camelCase", ""],
     "component-class-suffix": true,
     "directive-class-suffix": true,
     "templates-use-public": true,

@@ -1,5 +1,5 @@
 import { IQService, IPromise } from 'angular';
-//import { AppState } from '../common/services/appState/appState';
+import { AppState } from '../common/services/appState/appState';
 const countryState = {
   name: 'country',
   url: '/country',
@@ -11,18 +11,10 @@ const mapState = {
   component: 'countryMap',
   parent: countryState,
   resolve: {
-    countryInfo: ['$transition$', '$q',
-      ($transition$, $q: IQService): IPromise<any> => {
-        const code = $transition$.params().countryCode;
-        return new $q((resolve, reject) => {
-          if (!code) {
-            resolve();
-          } else {
-            //AppState.getCountry(code).then(resolve, reject);
-          }
-        });
-      }
-    ]
+    countryCode: ['$transition$', ($transition$): string => {
+      console.log('$transition$.params()',$transition$.params());
+      return $transition$.params().countryCode;
+    }]
   }
 };
 // state.config.ts

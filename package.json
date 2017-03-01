@@ -59,6 +59,8 @@
     "tslib": "^1.6.0"
   },
   "devDependencies": {
+    "@angular/compiler": "^2.4.8",
+    "@angular/core": "^2.4.8",
     "@types/angular-mocks": "^1.5.8",
     "@types/jasmine": "^2.5.41",
     "@types/jasmine-matchers": "^0.2.28",

@@ -23,6 +23,7 @@ export class CountryComponent implements OnInit {
     this.countryCode = countryCode;
   }
   countrySelected(country) {
+    this.$log.debug('countrySelected', country);
     this.$state.go('map', {
       countryCode: country.alpha2Code
     });

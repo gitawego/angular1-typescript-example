@@ -13,9 +13,9 @@ export class CountryListComponent implements OnInit {
   @Input() countryCode: string = '';
   @Output() onCountry = new EventEmitter<{ country: any }>();
   constructor(
-    private appState: AppState,
     @Inject('$log') private $log: LogEx.ILogService,
     @Inject('$state') private $state: StateService,
+    private appState: AppState,
   ) {
     this.$log.debug('constructor');
   }
@@ -37,8 +37,7 @@ export class CountryListComponent implements OnInit {
   }
   public showOnMap(country) {
     this.$log.debug('showOnMap', country);
-    this.onCountry.emit({
-      country
-    });
+    this.appState.currentCountry(country);
+    this.onCountry.emit(country);
   }
 }

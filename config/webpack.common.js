@@ -56,13 +56,13 @@ module.exports = function (options) {
   var isProd = options.ENV === 'production';
   const miniImages = '?' + (isProd ? '' : '-') + '?minimize';
   const scssExtractLoader = ExtractTextPlugin.extract({
-    fallbackLoader: 'style-loader',
-    loader: scssLoader,
+    fallback: 'style-loader',
+    use: scssLoader,
     publicPath: './'
   });
   const cssExtractLoader = ExtractTextPlugin.extract({
-    fallbackLoader: 'style-loader',
-    loader: ['css-loader'],
+    fallback: 'style-loader',
+    use: ['css-loader'],
     publicPath: './'
   });
   console.log("isProd", isProd);
